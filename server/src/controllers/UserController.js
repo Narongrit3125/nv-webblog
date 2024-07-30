@@ -5,6 +5,7 @@ module.exports = {
         try {
             const users = await User.findAll()
             res.send(users)
+            
         } catch (err) {
             res.status(500).send({
                 error: 'The users information was incorrect'
