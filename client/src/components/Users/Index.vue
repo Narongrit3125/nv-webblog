@@ -1,27 +1,34 @@
 <template>
     <div>
-        <h1>Get All Users</h1>
-        <div v-if="users.length">
-<div>จํานวนผู้ใช้งาน {{ users.length }}</div>
-<div>id: {{ users[0].id }}</div>
-<div>ชืEอ-นามสกุล: {{ users[0].name }} - {{ users[0].lastname }}</div>
-<div>email: {{ users[0].email }}</div>
-<div>password: {{ users[0].password }}</div>
+        <h2>Get all users</h2>
+        <h4>จํานวนผู้ใช้งาน {{ users.length }}</h4>
+        <div v-for="user in users" v-bind:key="user.id">
+            <p>id: {{ user.id }}</p>
+            <p>ชื่อ-นามสกุล: {{ user.name }} - {{ user.lastname }}</p>
+            <p>email: {{ user.email }}</p>
+            <p>password: {{ user.password }}</p>
+            <p><button>ดูข้อมูลผู้ใช้</button></p>
+            <hr>
         </div>
     </div>
 </template>
 <script>
-import UsersService from 'client/src/services/UsersService'
+import UsersService from '@/services/UsersService';
 
 export default {
-data () {
-return {
-users: []
-}
-},
-async created () {
-this.users = (await UsersService.index()).data
-}
+    data() {
+        return {
+            users: []
+        }
+    },
+    async created() {
+        this.users = (await UsersService.index()).data
+    },
+    methods: {
+        navigateTo(route) {
+            this.$router.push(route)
+        },
+    }
 }
 </script>
 <style scoped></style>
