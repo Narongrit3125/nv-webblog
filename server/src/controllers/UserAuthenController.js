@@ -27,10 +27,9 @@ module.exports = {
                 }
             })
             if (!user) {
-                return res.status(403).send(
-                    {
-                        error: 'User/Password not correct'
-                    })
+                return res.status(403).send({
+                    error: 'User/Password not correct'
+                })
             }
             const isPasswordValid = await user.comparePassword(password)
             if (!isPasswordValid) {
@@ -38,8 +37,10 @@ module.exports = {
                     error: 'User/Password not correct'
                 })
             }
-            const userJSON = user.toJSON()
-            res.send(userJSON)
+            res.send({
+                user: userJSON,
+                token: jwtSignUser(userJSON)
+            })
         } catch (error) {
             res.status(500).send({
                 error: 'Error! from get user'
