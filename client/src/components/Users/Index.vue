@@ -15,6 +15,7 @@
             </p>
             <button v-on:click="deleteUser(user)">ลบข้อมูล</button>
             <hr>
+            <p><button v-on:click="logout">Logout</button></p>
         </div>
     </div>
 </template>

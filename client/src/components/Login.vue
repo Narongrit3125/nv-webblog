@@ -2,8 +2,8 @@
     <div>
         <h1>User Login</h1>
         <form v-on:submit.prevent="onLogin">
-            <p>Email: <input type="email" v-model="email" required/></p> 
-            <p>Password: <input type="password" v-model="password" required/></p>
+            <p>Email: <input type="email" v-model="email" required /></p>
+            <p>Password: <input type="password" v-model="password" required /></p>
             <p><button type="submit">Login</button></p>
         </form>
     </div>
@@ -26,13 +26,14 @@ export default {
                 })
                 this.$store.dispatch('setToken', response.data.token)
                 this.$store.dispatch('setUser', response.data.user)
-
-                console.log(response)
-
+                this.$router.push({
+                    name: 'users'
+                })
             } catch (error) {
                 console.log(error)
             }
         }
     }
 }
+
 </script>
